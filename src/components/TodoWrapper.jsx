@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 
+import AddItem from './AddItem/AddItem'
 import ItemList from './ItemList/ItemList'
 
-const initialList = ['Item 1', 'Item 2'];
+const initialList = [];
 
 const TodoWrapper = () => {
   const [todoItems, setTodoItems] = useState(initialList);
 
+  const addItemHandler = (newItem) => {
+    setTodoItems([...todoItems, newItem])
+  }
+
   return (
-    <ItemList todoItems={todoItems}/>
+    <div>
+      <ItemList todoItems={todoItems}/>
+      <AddItem addItemHandler={addItemHandler} />
+    </div>
   );
 }
 

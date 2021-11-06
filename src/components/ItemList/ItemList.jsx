@@ -2,10 +2,10 @@ import React from 'react';
 
 import Item from '..//Item/Item';
 
-const ItemList = ({todoItems}) => {
+const ItemList = ({todoItems, toggleCompleteHandler}) => {
   return (
     <div>
-      {todoItems.map(item => <Item item={item} />)}
+      {todoItems.map(item => <Item key={item.id} item={item} toggleCompleteHandler={toggleCompleteHandler} />)}
     </div>
   );
 }

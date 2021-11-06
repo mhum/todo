@@ -1,9 +1,13 @@
 import React from 'react';
 
-const Item = ({item}) => {
+const Item = ({item, toggleCompleteHandler}) => {
+  const handleClick = () => {
+    toggleCompleteHandler(item.id)
+  }
+
   return (
-    <div>
-      {item}
+    <div className={item.completed ? "todo completed" : "todo"} onClick={handleClick}>
+      {item.value}
     </div>
   );
 }

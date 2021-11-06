@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 
 const Item = ({item, toggleCompleteHandler}) => {
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     toggleCompleteHandler(item.id)
-  }
+      }, [item.completed]);
 
   return (
     <div className={item.completed ? "todo completed" : "todo"} onClick={handleClick}>

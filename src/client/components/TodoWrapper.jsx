@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import AddItem from './AddItem/AddItem'
-import DeleteItems from './DeleteItems/DeleteItems';
-import ItemList from './ItemList/ItemList'
+import AddTodoItem from './AddTodoItem/AddTodoItem'
+import DeleteTodoItems from './DeleteTodoItems/DeleteTodoItems';
+import TodoItemList from './TodoItemList/TodoItemList'
 
 const TodoWrapper = () => {
   const [nextItemId, setNextItemId] = useState(1);
@@ -32,9 +32,9 @@ const TodoWrapper = () => {
 
   return (
     <div>
-      <ItemList todoItems={todoItems} toggleCompleteHandler={toggleCompleteHandler}/>
-      <AddItem addItemHandler={addItemHandler} />
-      <DeleteItems deleteCompletedHandler={deleteCompletedHandler} />
+      <TodoItemList todoItems={todoItems} toggleCompleteHandler={toggleCompleteHandler}/>
+      <AddTodoItem addItemHandler={addItemHandler} />
+      <DeleteTodoItems deleteCompletedHandler={deleteCompletedHandler} />
     </div>
   );
 }

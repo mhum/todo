@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 
-const Item = ({item, toggleCompleteHandler}) => {
+const TodoItem = ({item, toggleCompleteHandler}) => {
   const handleClick = () => {
     toggleCompleteHandler(item.id)
   };
@@ -12,4 +12,4 @@ const Item = ({item, toggleCompleteHandler}) => {
   );
 }
 
-export default Item;
+export default TodoItem;

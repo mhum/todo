@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AddItem = ({addItemHandler}) => {
+const AddTodoItem = ({addItemHandler}) => {
   const [itemText, setItemText] = useState('');
 
   const handleChange = (e) => {
@@ -24,4 +24,4 @@ const AddItem = ({addItemHandler}) => {
   );
 }
 
-export default AddItem;
+export default AddTodoItem;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DeleteItems = ({deleteCompletedHandler}) => {
+const DeleteTodoItems = ({deleteCompletedHandler}) => {
   return (
     <button onClick={deleteCompletedHandler} >
       Delete Completed Items
@@ -8,4 +8,4 @@ const DeleteItems = ({deleteCompletedHandler}) => {
   );
 }
 
-export default DeleteItems;
+export default DeleteTodoItems;

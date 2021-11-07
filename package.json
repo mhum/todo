@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --config webpack.config.js"
+    "start": "webpack serve --config webpack.config.js && npx tsc-watch --onSuccess 'node dist/index.js'",
+    "start2": "npx tsc-watch --onSuccess 'node dist/index.js'"
   },
   "repository": {
     "type": "git",
@@ -22,16 +23,20 @@
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-class-properties": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
+    "@types/node": "^16.11.6",
     "babel-loader": "^8.2.3",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
+    "tsc-watch": "^4.5.0",
+    "typescript": "^4.4.4",
     "webpack": "^5.62.1",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.4.0"
   },
   "dependencies": {
+    "@curveball/core": "^0.16.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }

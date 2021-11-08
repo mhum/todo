@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useCollection } from 'react-ketting';
 
 import AddTodoItem from './AddTodoItem/AddTodoItem'
 import DeleteTodoItems from './DeleteTodoItems/DeleteTodoItems';
 import TodoItemList from './TodoItemList/TodoItemList'
 
-const TodoWrapper = () => {
+const TodoListWrapper = () => {
+  const { loading, error, items } = useCollection('/todo');
+
   const [nextItemId, setNextItemId] = useState(1);
   const [todoItems, setTodoItems] = useState([]);
 
@@ -30,13 +33,18 @@ const TodoWrapper = () => {
     setTodoItems(updatedItems);
   }
 
-  return (
+  if (loading || error) {
+    return<div></div>
+  }
+
+return (
     <div>
-      <TodoItemList todoItems={todoItems} toggleCompleteHandler={toggleCompleteHandler}/>
+      {/* <TodoItemList todoItems={todoItems} toggleCompleteHandler={toggleCompleteHandler}/> */}
+      <TodoItemList todoItems={items}/>
       <AddTodoItem addItemHandler={addItemHandler} />
       <DeleteTodoItems deleteCompletedHandler={deleteCompletedHandler} />
     </div>
   );
 }
 
-export default TodoWrapper;
+export default TodoListWrapper;

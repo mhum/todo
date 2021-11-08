@@ -18,3 +18,16 @@ export async function getItems(): Promise<TodoItem[]> {
     resolve(todoList)
   });
 }
+
+export async function getItemById(id: number): Promise<TodoItem> {
+  return new Promise((resolve, reject) => {
+    const item = todoList.find(item => item.id == id);
+
+    if (item === undefined) {
+      reject('Oops!')
+      return;
+    }
+
+    resolve(item)
+  });
+}

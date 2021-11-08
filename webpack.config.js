@@ -25,5 +25,12 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
-  plugins: [htmlPlugin]
+  plugins: [htmlPlugin],
+  devServer: {
+    proxy: {
+      '/todo': {
+        target: 'http://localhost:4000',
+      },
+    },
+  },
 };

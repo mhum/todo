@@ -3,3 +3,8 @@ export type TodoItem = {
   value: string;
   completed: boolean
 }
+
+export type NewTodoItem = {
+  value: string;
+  completed: boolean
+}

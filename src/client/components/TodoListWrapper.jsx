@@ -6,7 +6,9 @@ import DeleteTodoItems from './DeleteTodoItems/DeleteTodoItems';
 import TodoItemList from './TodoItemList/TodoItemList'
 
 const TodoListWrapper = () => {
-  const { loading, error, items } = useCollection('/todo');
+  const { loading, error, items } = useCollection('/todo', {
+    refreshOnStale: true
+  });
 
   const [nextItemId, setNextItemId] = useState(1);
   const [todoItems, setTodoItems] = useState([]);

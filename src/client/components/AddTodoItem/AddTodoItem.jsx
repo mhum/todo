@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useClient } from 'react-ketting';
 
 const AddTodoItem = ({addItemHandler}) => {
   const [itemText, setItemText] = useState('');
+  const client = useClient();
 
   const handleChange = (e) => {
     setItemText(e.target.value);
@@ -9,7 +11,14 @@ const AddTodoItem = ({addItemHandler}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addItemHandler(itemText);
+    const todoCollection = client.go('/todo')
+    todoCollection.post({
+      data: {
+        value: itemText,
+        completed: false
+      }
+    });
+
     setItemText('');
   }
 

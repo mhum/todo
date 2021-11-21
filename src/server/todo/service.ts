@@ -1,4 +1,4 @@
-import { TodoItem } from './types';
+import { TodoItem, NewTodoItem } from './types';
 
 const todoList: TodoItem[] = [
   {
@@ -30,4 +30,14 @@ export async function getItemById(id: number): Promise<TodoItem> {
 
     resolve(item)
   });
+}
+
+export async function addItem(todo: NewTodoItem): Promise<TodoItem> {
+  const newTodo = {
+    ...todo,
+    id: todoList.length + 1,
+  }
+
+  todoList.push(newTodo);
+  return newTodo;
 }

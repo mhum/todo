@@ -1,7 +1,8 @@
 import Controller from '@curveball/controller';
 import { Context } from '@curveball/core';
 
-import { getItems } from '../service';
+import { getItems, addItem } from '../service';
+import { NewTodoItem } from '../types';
 
 export default class TodoCollection extends Controller {
 
@@ -20,4 +21,16 @@ export default class TodoCollection extends Controller {
     };
   }
 
+  async post(ctx: Context) {
+    ctx.request.validate<NewTodoItem>('new-todo-item.json');
+
+    const todo: NewTodoItem = {
+      value: ctx.request.body.value,
+      completed: ctx.request.body.completed,
+    }
+
+    const newTodo = await addItem(todo);
+    ctx.status = 201;
+    ctx.response.headers.set('Location', `/todo/${newTodo.id}`);
+  }
 }

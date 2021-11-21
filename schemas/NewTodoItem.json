@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "new-todo-item.json",
+  "title": "NewTodoItem",
+  "type": "object",
+
+  "required": ["value", "completed"],
+  "additionalProperties": false,
+
+  "properties": {
+    "_links": {},
+    "value": { "type": "string" },
+    "completed": { "type": "boolean" }
+  }
+}

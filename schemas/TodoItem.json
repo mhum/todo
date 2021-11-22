@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "todo-item.json",
+  "title": "TodoItem",
+  "type": "object",
+
+  "required": ["id", "value", "completed"],
+  "additionalProperties": false,
+
+  "properties": {
+    "_links": {},
+    "id": { "type": "number" },
+    "value": { "type": "string" },
+    "completed": { "type": "boolean" }
+  }
+}

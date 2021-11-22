@@ -1,11 +1,15 @@
 import React from 'react';
 import { useResource } from 'react-ketting';
 
-const TodoItem = ({item, toggleCompleteHandler}) => {
-  const { loading, error, data } = useResource(item);
+const TodoItem = ({item }) => {
+  const { loading, error, data, setData, submit } = useResource(item);
 
   const handleClick = () => {
-    toggleCompleteHandler(item.id)
+    setData({
+      ...data,
+      completed: !data.completed
+    })
+    submit();
   };
 
   if (loading || error) {

@@ -28,7 +28,7 @@ export async function getItemById(id: number): Promise<TodoItem> {
       return;
     }
 
-    resolve(item)
+    resolve(JSON.parse(JSON.stringify(item)))
   });
 }
 
@@ -40,4 +40,19 @@ export async function addItem(todo: NewTodoItem): Promise<TodoItem> {
 
   todoList.push(newTodo);
   return newTodo;
+}
+
+export async function updateItemById(id: number, updatedItem: TodoItem): Promise<void> {
+  if (id != updatedItem.id) {
+    throw Error('URI in path doesn\'t match id in updated object');
+  }
+
+  const item = todoList.find(item => item.id == updatedItem.id);
+
+  if (!item) {
+    throw Error('Todo item not found');
+  }
+
+  item.value = updatedItem.value;
+  item.completed = updatedItem.completed;
 }

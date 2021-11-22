@@ -1,7 +1,7 @@
 import Controller from '@curveball/controller';
 import { Context } from '@curveball/core';
 
-import { getItemById, updateItemById } from '../service';
+import { getItemById, updateItemById, deleteItemById } from '../service';
 import { TodoItem as TodoItemType } from '../types';
 
 export default class TodoItem extends Controller {
@@ -30,6 +30,11 @@ export default class TodoItem extends Controller {
     item.completed = ctx.request.body.completed;
 
     await updateItemById(ctx.state.params.itemId, item);
+    ctx.status = 204;
+  }
+
+  async delete(ctx: Context) {
+    await deleteItemById(ctx.state.params.itemId);
     ctx.status = 204;
   }
 }

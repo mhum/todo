@@ -1,38 +1,25 @@
-import React, { useState } from 'react';
-import { useCollection } from 'react-ketting';
+import React from 'react';
+import { useCollection, useClient } from 'react-ketting';
 
 import AddTodoItem from './AddTodoItem/AddTodoItem'
 import DeleteTodoItems from './DeleteTodoItems/DeleteTodoItems';
 import TodoItemList from './TodoItemList/TodoItemList'
 
 const TodoListWrapper = () => {
+  const client = useClient();
   const { loading, error, items } = useCollection('/todo', {
     refreshOnStale: true
   });
 
-  const [nextItemId, setNextItemId] = useState(1);
-  const [todoItems, setTodoItems] = useState([]);
+  const deleteCompletedHandler = async () => {
+    const fetchedItems = await Promise.all(items.map(item => item.get()));
+    const completedItems = fetchedItems.filter(item => item.data.completed);
 
-  const addItemHandler = (newItemValue) => {
-    const newItem = {
-      id: nextItemId,
-      value: newItemValue,
-      completed: false,
-    };
-    setTodoItems([...todoItems, newItem]);
-    setNextItemId(nextItemId + 1);
-  }
+    await Promise.all(completedItems.map(item => client.go(`/todo/${item.data.id}`).delete()));
 
-  const toggleCompleteHandler = (itemId) => {
-    const updatedItems = todoItems.map(item => {
-      return item.id == itemId ? { ...item, completed: !item.completed } : { ...item};
-    });
-    setTodoItems(updatedItems);
-  }
-
-  const deleteCompletedHandler = () => {
-    const updatedItems = todoItems.filter(item => !item.completed);
-    setTodoItems(updatedItems);
+    if (completedItems) {
+      client.go('/todo').refresh();
+    }
   }
 
   if (loading || error) {
@@ -41,9 +28,8 @@ const TodoListWrapper = () => {
 
 return (
     <div>
-      {/* <TodoItemList todoItems={todoItems} toggleCompleteHandler={toggleCompleteHandler}/> */}
-      <TodoItemList todoItems={items}/>
-      <AddTodoItem addItemHandler={addItemHandler} />
+      <TodoItemList todoItems={items} />
+      <AddTodoItem />
       <DeleteTodoItems deleteCompletedHandler={deleteCompletedHandler} />
     </div>
   );

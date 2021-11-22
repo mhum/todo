@@ -1,6 +1,6 @@
 import { TodoItem, NewTodoItem } from './types';
 
-const todoList: TodoItem[] = [
+let todoList: TodoItem[] = [
   {
     id: 1,
     value: 'Item 1',
@@ -55,4 +55,8 @@ export async function updateItemById(id: number, updatedItem: TodoItem): Promise
 
   item.value = updatedItem.value;
   item.completed = updatedItem.completed;
+}
+
+export async function deleteItemById(id: number): Promise<void> {
+  todoList = todoList.filter(item => item.id != id)
 }

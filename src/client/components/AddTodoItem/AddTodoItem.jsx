@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useClient } from 'react-ketting';
 
-const AddTodoItem = ({addItemHandler}) => {
+const AddTodoItem = () => {
   const [itemText, setItemText] = useState('');
   const client = useClient();
 

@@ -7,13 +7,17 @@ const htmlPlugin = new HtmlWebPackPlugin({
 module.exports = {
   mode: 'development',
   entry: './src/client',
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.tsx$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: "ts-loader",
+          options: {
+            configFile: "tsconfig.client.json"
+          }
         }
       },
       {
@@ -23,7 +27,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['*', '.js', '.jsx', '.tsx'],
   },
   plugins: [htmlPlugin],
   devServer: {

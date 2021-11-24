@@ -12,7 +12,7 @@ const app = new Application();
 app.use(accessLog());
 app.use(bodyParser());
 app.use(validator(
-  join(__dirname, '../schemas/')
+  join(__dirname, '../../schemas/')
 ));
 
 app.use(...routes);

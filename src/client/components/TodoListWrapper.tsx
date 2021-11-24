@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import React from 'react';
 import { useCollection, useClient } from 'react-ketting';
 
@@ -12,10 +14,14 @@ const TodoListWrapper = () => {
   });
 
   const deleteCompletedHandler = async () => {
-    const fetchedItems = await Promise.all(items.map(item => item.get()));
-    const completedItems = fetchedItems.filter(item => item.data.completed);
+    let completedItems = false;
 
-    await Promise.all(completedItems.map(item => client.go(`/todo/${item.data.id}`).delete()));
+    for(const item of items) {
+      if ((await item.get()).data.completed) {
+        item.delete();
+        completedItems = true;
+      }
+    }
 
     if (completedItems) {
       client.go('/todo').refresh();

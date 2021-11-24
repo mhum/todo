@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2019",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+
+
+    // "allowJs": true,
+    // "skipLibCheck": true,
+    // "forceConsistentCasingInFileNames": true,
+    // "resolveJsonModule": true,
+    // "isolatedModules": true,
+
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "noEmit": false,
+    "lib": [
+        "dom",
+        "dom.iterable",
+        "esnext"
+    ],
+    "jsx": "react-jsx"
+  },
+  "include": [
+      "**/*"
+  ]
+}

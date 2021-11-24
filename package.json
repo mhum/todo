@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --config webpack.config.js",
-    "start-server": "npx tsc-watch -p tsconfig.server.json --onSuccess 'node dist/server/index.js'"
+    "start-server": "npx tsc-watch -p src/server/tsconfig.json --onSuccess 'node dist/server/index.js'"
   },
   "repository": {
     "type": "git",

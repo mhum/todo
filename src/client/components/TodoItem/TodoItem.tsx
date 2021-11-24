@@ -1,10 +1,14 @@
-// @ts-nocheck
-
-import React from 'react';
+import { Resource } from 'ketting';
 import { useResource } from 'react-ketting';
 
-const TodoItem = ({item }) => {
-  const { loading, error, data, setData, submit } = useResource(item);
+import { TodoItem } from '../../types/TodoItem';
+
+type TodoItemProps = {
+  item: Resource<TodoItem>
+}
+
+const TodoItem = ({ item }: TodoItemProps) => {
+  const { loading, error, data, setData, submit } = useResource<TodoItem>(item);
 
   const handleClick = () => {
     setData({

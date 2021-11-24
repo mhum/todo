@@ -1,15 +1,13 @@
-// @ts-ignore
-
-import React from 'react';
 import { useCollection, useClient } from 'react-ketting';
 
 import AddTodoItem from './AddTodoItem/AddTodoItem'
 import DeleteTodoItems from './DeleteTodoItems/DeleteTodoItems';
 import TodoItemList from './TodoItemList/TodoItemList'
+import { TodoItem } from '../types/TodoItem';
 
 const TodoListWrapper = () => {
   const client = useClient();
-  const { loading, error, items } = useCollection('/todo', {
+  const { loading, error, items } = useCollection<TodoItem>('/todo', {
     refreshOnStale: true
   });
 

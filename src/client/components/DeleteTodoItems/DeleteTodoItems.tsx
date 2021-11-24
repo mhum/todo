@@ -1,8 +1,10 @@
-// @ts-nocheck
+import { MouseEventHandler } from 'react';
 
-import React from 'react';
+type Props = {
+  deleteCompletedHandler: MouseEventHandler<HTMLButtonElement>
+}
 
-const DeleteTodoItems = ({deleteCompletedHandler}) => {
+const DeleteTodoItems = ({deleteCompletedHandler}: Props) => {
   return (
     <button onClick={deleteCompletedHandler} >
       Delete Completed Items

@@ -1,10 +1,13 @@
-// @ts-nocheck
-
-import React from 'react';
+import { Resource } from 'ketting';
 
 import TodoItem from '../TodoItem/TodoItem';
+import { TodoItem as TodoItemType } from '../../types/TodoItem';
 
-const TodoItemList = ({todoItems}) => {
+type TodoItemListProps = {
+  todoItems: Resource<TodoItemType>[]
+}
+
+const TodoItemList = ({ todoItems }: TodoItemListProps) => {
   return (
     <div>
       {todoItems.map(item => <TodoItem key={item.uri} item={item} />)}

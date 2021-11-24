@@ -1,7 +1,4 @@
-// @ts-nocheck
-
 import ReactDOM from 'react-dom';
-import React from 'react';
 import { Client } from 'ketting';
 import { KettingProvider } from 'react-ketting';
 
